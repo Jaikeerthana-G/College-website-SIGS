@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Essentials -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meet the experienced faculty members of Sarvodaya Institute of Graduate Studies (SIGS), Tumkur.">
+
+    <title>Faculty | SIGS</title>
+
+    <link rel="icon" href="{% static 'assets/images/logo.png' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <script defer src="{% static 'assets/js/script.js' %}"></script>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="{% url 'index' %}" class="brand">
+                <img src="{% static 'assets/images/sigs-logo.png' %}" alt="SIGS Logo">
+                <span>SIGS</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="#cs">Computer Science</a></li>
+                    <li><a href="#commerce">Commerce</a></li>
+					<li><a href="#language">Languages</a></li>
+                    <li><a href="{% url 'index' %}#contact">Contact</a></li>
+                </ul>
+
+                <button class="menu-toggle" aria-label="Open Menu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================= HERO TITLE ================= -->
+    <section class="section alt-bg">
+        <div class="container">
+            <h1 class="section-title">Our Faculty</h1>
+            <p class="section-subtitle">
+                Dedicated educators committed to academic excellence and student growth.
+            </p>
+        </div>
+    </section>
+
+    {% regroup faculty_members by department as dept_list %}
+    
+    {% for dept in dept_list %}
+    <section id="{{ dept.grouper|lower|slugify }}" class="section {% if forloop.counter|divisibleby:2 %}alt-bg{% endif %}">
+        <div class="container">
+            <h2 class="section-title">
+                {% if dept.grouper == 'Principal' %}
+                    Principal
+                {% elif dept.grouper == 'Languages' %}
+                    Languages
+                {% else %}
+                    Department of {{ dept.grouper }}
+                {% endif %}
+            </h2>
+
+            <div class="card-grid">
+                {% for faculty in dept.list %}
+                <div class="card">
+                    {% if faculty.image %}
+                    <img src="{{ faculty.image.url }}" alt="{{ faculty.name }}" class="faculty-img">
+                    {% else %}
+                    <img src="{% static 'assets/images/faculty.png' %}" alt="{{ faculty.name }}" class="faculty-img">
+                    {% endif %}
+                    
+                    <h3>{{ faculty.name }}</h3>
+                    <p>{% if dept.grouper == 'Principal' %}<strong>{{ faculty.designation }}</strong>{% else %}{{ faculty.designation }}{% endif %}</p>
+                    
+                    {% if faculty.specialization %}
+                        <p>{% if dept.grouper == 'Principal' %}{{ faculty.specialization }}{% else %}Specialization: {{ faculty.specialization }}{% endif %}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% empty %}
+    <section class="section">
+        <div class="container" style="text-align: center;">
+            <p>Faculty directory is currently being updated. Please check back later.</p>
+        </div>
+    </section>
+    {% endfor %}
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>SIGS</h3>
+                <p>Committed to Quality Education and Student Success.</p>
+            </div>
+
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'index' %}#academics">Programs</a></li>
+                    <li><a href="{% url 'index' %}#admissions">Admissions</a></li>
+                    <li><a href="{% url 'index' %}#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Location</h4>
+                <p>Horpet Circle, Tumkur - 572101</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Sarvodaya Institute of Graduate Studies | All Rights Reserved</p>
+        </div>
+    </footer>
+
+</body>
+</html>

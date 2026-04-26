@@ -1,0 +1,277 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Essentials -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Sarvodaya Institute of Graduate Studies (SIGS), Tumkur. Quality higher education in BCA, BCA AI/ML, and B.Com with strong placement support.">
+    <meta name="keywords" content="SIGS, Tumkur college, BCA, BCom, AI ML college Karnataka">
+    <meta name="author" content="Sarvodaya Institute of Graduate Studies">
+
+    <title>SIGS | Sarvodaya Institute of Graduate Studies</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'assets/images/logo.png' %}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+    <!-- Future JS -->
+    <script defer src="{% static 'assets/js/script.js' %}?v=1.1"></script>
+</head>
+
+<body>
+
+    <!-- ================= NAVIGATION ================= -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'index' %}" class="brand">
+                <img src="{% static 'assets/images/SIGS.jpg' %}" alt="SIGS Logo">
+                <span class="logotext">SIGS</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#academics">Academics</a></li>
+                    <li><a href="#admissions">Admissions</a></li>
+                    <li><a href="{% url 'faculty' %}">Faculty</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+                <!-- Mobile Toggle -->
+                <button class="menu-toggle" aria-label="Open Menu">
+                    ☰
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================= HERO ================= -->
+    <section id="home" class="hero">
+        {% if hero_section and hero_section.video %}
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="{{ hero_section.video.url }}" type="video/mp4">
+        </video>
+        {% else %}
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="{% static 'assets/images/videos/golden_jubilee.mp4' %}" type="video/mp4">
+        </video>
+        {% endif %}
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>{% if hero_section %}{{ hero_section.title }}{% else %}Sarvodaya Institute of Graduate Studies{% endif %}</h1>
+            <p>{% if hero_section %}{{ hero_section.subtitle }}{% else %}Empowering Minds. Transforming Futures.{% endif %}</p>
+            <a href="{% url 'admission' %}" class="btn-primary">Apply Now</a>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <p class="section-subtitle">
+                Excellence in Education Since 2022
+            </p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Vision</h3>
+                    <p>
+                        To become a distinguished center of higher education,
+                        recognized nationally for academic excellence and leadership.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Mission</h3>
+                    <ul>
+                        <li>Preserve and promote cultural heritage through education and research.</li>
+                        <li>Prepare students for global and technological challenges.</li>
+                        <li>Develop critical thinking and lifelong learning skills.</li>
+                        <li>Build responsible and compassionate citizens.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ACADEMICS ================= -->
+    <section id="academics" class="section alt-bg">
+        <div class="container">
+            <h2 class="section-title">Academic Programs</h2>
+
+            <div class="card-grid">
+                {% for course in courses %}
+                <div class="card">
+                    {% if course.image %}
+                    <img src="{{ course.image.url }}" alt="{{ course.title }}"
+                        style="width:100%; border-radius: 8px; margin-bottom: 15px;">
+                    {% endif %}
+                    <h3>{{ course.title }}</h3>
+                    <p>{{ course.description }}</p>
+                    {% if course.duration %}<p><strong>Duration:</strong> {{ course.duration }}</p>{% endif %}
+                </div>
+                {% empty %}
+                <p style="text-align: center; width: 100%;">Academic programs are being updated.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= STATS ================= -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div>
+                <h3>120+</h3>
+                <p>Students</p>
+            </div>
+            <div>
+                <h3>15+</h3>
+                <p>Faculty Members</p>
+            </div>
+            <div>
+                <h3>8 LPA</h3>
+                <p>Highest Package</p>
+            </div>
+            <div>
+                <h3>NAAC</h3>
+                <p>Accredited</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ADMISSIONS ================= -->
+    <section id="admissions" class="section">
+        <div class="container">
+            <h2 class="section-title">Admissions 2026-27</h2>
+
+            <div class="card">
+                <p><strong>Eligibility:</strong> 12th Pass with minimum 50% (UG Programs)</p>
+                <p>Online application available. Limited seats.</p>
+                <a href="{% url 'admission' %}" class="btn-primary">Start Application</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ANNOUNCEMENTS ================= -->
+    {% if announcements %}
+    <section id="announcements" class="section alt-bg">
+        <div class="container">
+            <h2 class="section-title">Announcements</h2>
+            <div class="card-grid">
+                {% for announcement in announcements %}
+                <div class="card" style="border-left: 4px solid var(--primary-color);">
+                    {% if announcement.media_type == 'image' and announcement.multimedia_file %}
+                    <img src="{{ announcement.multimedia_file.url }}" alt="{{ announcement.title }}"
+                        style="width:100%; border-radius: 8px; margin-bottom: 15px;">
+                    {% elif announcement.media_type == 'video' and announcement.multimedia_file %}
+                    <video controls style="width:100%; border-radius: 8px; margin-bottom: 15px;">
+                        <source src="{{ announcement.multimedia_file.url }}" type="video/mp4">
+                    </video>
+                    {% elif announcement.media_type == 'audio' and announcement.multimedia_file %}
+                    <audio controls style="width:100%; margin-bottom: 15px;">
+                        <source src="{{ announcement.multimedia_file.url }}" type="audio/mpeg">
+                    </audio>
+                    {% endif %}
+                    <h3>{{ announcement.title }}</h3>
+                    <p><small>{{ announcement.date_posted|date:"F d, Y" }}</small></p>
+                    <p>{{ announcement.content }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- ================= GALLERY ================= -->
+    <section id="gallery" class="section alt-bg">
+        <div class="container">
+            <h2 class="section-title">Campus Gallery</h2>
+
+            <div class="gallery-grid">
+                {% for media in gallery_media %}
+                {% if media.media_type == 'image' %}
+                <img src="{{ media.file.url }}" alt="{{ media.title }}">
+                {% elif media.media_type == 'video' %}
+                <video controls src="{{ media.file.url }}" style="width:100%; border-radius:10px;"></video>
+                {% elif media.media_type == 'audio' %}
+                <div class="card"
+                    style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+                    <h4>{{ media.title }}</h4>
+                    <audio controls src="{{ media.file.url }}" style="width:90%;"></audio>
+                </div>
+                {% endif %}
+                {% empty %}
+                <p>Gallery is being updated.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+
+            <div class="grid-2">
+                <div>
+                    <p><strong>Address:</strong> Sarvodaya Education Society, Horpet Circle, Tumkur - 572101, Karnataka
+                    </p>
+                    <p><strong>Phone:</strong> +91 9876543210</p>
+                    <p><strong>Email:</strong> sigs@gmail.com</p>
+                </div>
+
+                <form class="contact-form" action="{% url 'index' %}#contact" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" rows="4" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>SIGS</h3>
+                <p>Committed to Quality Education and Student Success.</p>
+            </div>
+
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#academics">Programs</a></li>
+                    <li><a href="#admissions">Admissions</a></li>
+                    <li><a href="{% url 'faculty' %}">Faculty</a></li>
+                    <li><a href="/admin/">Admin</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Follow Us</h4>
+                <p>Facebook | Instagram | LinkedIn</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Sarvodaya Institute of Graduate Studies | All Rights Reserved</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
