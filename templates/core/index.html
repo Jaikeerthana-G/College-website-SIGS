@@ -28,7 +28,10 @@
 </head>
 
 <body>
-
+    <!-- ================= LOADER ================= -->
+    <div id="loader-wrapper">
+        <div class="loader"></div>
+    </div>
     <!-- ================= NAVIGATION ================= -->
     <header class="navbar">
         <div class="container nav-container">
@@ -121,6 +124,7 @@
                     <h3>{{ course.title }}</h3>
                     <p>{{ course.description }}</p>
                     {% if course.duration %}<p><strong>Duration:</strong> {{ course.duration }}</p>{% endif %}
+                    <a href="#" class="btn-outline">Read More</a>
                 </div>
                 {% empty %}
                 <p style="text-align: center; width: 100%;">Academic programs are being updated.</p>
@@ -187,6 +191,7 @@
                     <h3>{{ announcement.title }}</h3>
                     <p><small>{{ announcement.date_posted|date:"F d, Y" }}</small></p>
                     <p>{{ announcement.content }}</p>
+                    <a href="#" class="btn-outline" style="margin-top:auto;">Learn More</a>
                 </div>
                 {% endfor %}
             </div>

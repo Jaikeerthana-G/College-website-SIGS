@@ -28,25 +28,41 @@ window.addEventListener("scroll", () => {
 });
 
 
+// ===================== PAGE LOADER =====================
+
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader-wrapper");
+    if (loader) {
+        loader.style.opacity = "0";
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 600);
+    }
+});
+
+
 // ===================== SCROLL REVEAL ANIMATION =====================
 
-const sections = document.querySelectorAll(".section");
-
-const revealOnScroll = () => {
-    const triggerBottom = window.innerHeight * 0.85;
-
-    sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-
-        if (sectionTop < triggerBottom) {
-            section.style.opacity = "1";
-            section.style.transform = "translateY(0)";
-        }
-    });
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
 };
 
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('appear');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.fade-in, .section').forEach(el => {
+    el.classList.add('fade-in'); // Ensure all sections have the base class
+    observer.observe(el);
+});
+
 
 
 // ===================== CONTACT FORM VALIDATION =====================
