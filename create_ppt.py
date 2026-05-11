@@ -91,7 +91,20 @@ def create_presentation():
         title.text = "Managing Dynamic Frontend Content (Hero Section)"
         slide.shapes.add_picture("hero.png", Inches(1), Inches(1.5), width=Inches(8))
 
-        # Slide 6: Backend Tech Stack
+        # Slide 6: Database Architecture
+        slide_layout = prs.slide_layouts[1] # Title and Content
+        slide = prs.slides.add_slide(slide_layout)
+        title = slide.shapes.title
+        title.text = "Database Models & Architecture"
+        content = slide.placeholders[1]
+        content.text = "The system uses an ORM-based relational database design. Key models include:\n" \
+                       "• AdmissionApplication: Handles student enrollments, docs, and academic data\n" \
+                       "• FacultyMember & Course: Manages academic programs and staff profiles\n" \
+                       "• Announcement & GalleryMedia: Powers dynamic updates and multimedia displays\n" \
+                       "• HeroSection: Controls the homepage video and text configuration\n" \
+                       "• ContactMessage: Stores user inquiries from the frontend"
+
+        # Slide 7: Backend Tech Stack
         slide_layout = prs.slide_layouts[1] # Title and Content
         slide = prs.slides.add_slide(slide_layout)
         title = slide.shapes.title
