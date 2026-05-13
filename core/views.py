@@ -73,3 +73,12 @@ def admission(request):
         return redirect('index')
 
     return render(request, 'core/admission.html')
+
+def gallery_bca(request):
+    return render(request, 'core/gallery_bca.html')
+
+def gallery_bca_ai(request):
+    return render(request, 'core/gallery_bca_ai.html')
+
+def gallery_bcom(request):
+    return render(request, 'core/gallery_bcom.html')

@@ -91,18 +91,22 @@
                 <div class="card">
                     <h3>Vision</h3>
                     <p>
-                        To become a distinguished center of higher education,
-                        recognized nationally for academic excellence and leadership.
+                        To be a globally recognised, research-led institution that transforms lives through exceptional education, groundbreaking discovery, and meaningful community engagement.
+                    </p>
+                    <h3 style="margin-top: 20px;">Mission</h3>
+                    <p>
+                        Dedicated to providing a transformative educational experience that combines rigorous academic programs, applied research, and strong industry partnerships.
                     </p>
                 </div>
 
                 <div class="card">
-                    <h3>Mission</h3>
-                    <ul>
-                        <li>Preserve and promote cultural heritage through education and research.</li>
-                        <li>Prepare students for global and technological challenges.</li>
-                        <li>Develop critical thinking and lifelong learning skills.</li>
-                        <li>Build responsible and compassionate citizens.</li>
+                    <h3>Approvals & Recognitions</h3>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li style="margin-bottom: 8px;">AICTE Approved (New Delhi)</li>
+                        <li style="margin-bottom: 8px;">Affiliated to Tumkur University</li>
+                        <li style="margin-bottom: 8px;">Recognised by the Government of Karnataka</li>
+                        <li style="margin-bottom: 8px;">UGC Compliant (as per Mandatory Disclosure)</li>
+                        <li style="margin-bottom: 8px;">In association with IQAC (Internal Quality Assurance Cell)</li>
                     </ul>
                 </div>
             </div>
@@ -115,19 +119,29 @@
             <h2 class="section-title">Academic Programs</h2>
 
             <div class="card-grid">
-                {% for course in courses %}
                 <div class="card">
-                    {% if course.image %}
-                    <img src="{{ course.image.url }}" alt="{{ course.title }}"
-                        style="width:100%; border-radius: 8px; margin-bottom: 15px;">
-                    {% endif %}
-                    <h3>{{ course.title }}</h3>
-                    <p>{{ course.description }}</p>
-                    {% if course.duration %}<p><strong>Duration:</strong> {{ course.duration }}</p>{% endif %}
+                    <img src="{% static 'assets/images/bca_ai.jpg' %}" alt="BCA (AI & Machine Learning)" style="width:100%; border-radius: 8px; margin-bottom: 15px;" onerror="this.src='https://via.placeholder.com/400x300?text=BCA+AI+%26+ML'">
+                    <h3>BCA (AI & Machine Learning)</h3>
+                    <p>Advanced program focusing on Artificial Intelligence, Machine Learning, and Data Science.</p>
+                    <p><strong>Duration:</strong> 3/4 Years</p>
+                    <a href="{% url 'gallery_bca_ai' %}" class="btn-secondary" style="display:inline-block; margin-top:15px; text-decoration:none; padding:8px 15px; border:1px solid var(--primary-color); border-radius:5px; color:var(--primary-color); font-weight:600;">View Gallery</a>
                 </div>
-                {% empty %}
-                <p style="text-align: center; width: 100%;">Academic programs are being updated.</p>
-                {% endfor %}
+
+                <div class="card">
+                    <img src="{% static 'assets/images/bca.jpg' %}" alt="BCA" style="width:100%; border-radius: 8px; margin-bottom: 15px;" onerror="this.src='https://via.placeholder.com/400x300?text=BCA'">
+                    <h3>BCA (Bachelor of Computer Applications)</h3>
+                    <p>Comprehensive program covering software development, programming, and core computing concepts.</p>
+                    <p><strong>Duration:</strong> 3/4 Years</p>
+                    <a href="{% url 'gallery_bca' %}" class="btn-secondary" style="display:inline-block; margin-top:15px; text-decoration:none; padding:8px 15px; border:1px solid var(--primary-color); border-radius:5px; color:var(--primary-color); font-weight:600;">View Gallery</a>
+                </div>
+
+                <div class="card">
+                    <img src="{% static 'assets/images/bcom.jpg' %}" alt="B.Com" style="width:100%; border-radius: 8px; margin-bottom: 15px;" onerror="this.src='https://via.placeholder.com/400x300?text=B.Com'">
+                    <h3>B.Com (Bachelor of Commerce)</h3>
+                    <p>In-depth commerce program focusing on accounting, finance, taxation, and business management.</p>
+                    <p><strong>Duration:</strong> 3/4 Years</p>
+                    <a href="{% url 'gallery_bcom' %}" class="btn-secondary" style="display:inline-block; margin-top:15px; text-decoration:none; padding:8px 15px; border:1px solid var(--primary-color); border-radius:5px; color:var(--primary-color); font-weight:600;">View Gallery</a>
+                </div>
             </div>
         </div>
     </section>
@@ -229,10 +243,9 @@
 
             <div class="grid-2">
                 <div>
-                    <p><strong>Address:</strong> Sarvodaya Education Society, Horpet Circle, Tumkur - 572101, Karnataka
-                    </p>
-                    <p><strong>Phone:</strong> +91 9876543210</p>
-                    <p><strong>Email:</strong> sigs@gmail.com</p>
+                    <p><strong>Address:</strong> Horpet, Tumkur – 572101, Karnataka, India</p>
+                    <p><strong>Phone:</strong> +91 99027 50081 / +91 89718 48952</p>
+                    <p><strong>Email:</strong> degreesavodaya2022@gmail.com / cssarvodaya@gmail.com</p>
                 </div>
 
                 <form class="contact-form" action="{% url 'index' %}#contact" method="POST">
@@ -258,15 +271,20 @@
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="#academics">Programs</a></li>
-                    <li><a href="#admissions">Admissions</a></li>
+                    <li><a href="{% url 'admission' %}">Admissions</a></li>
                     <li><a href="{% url 'faculty' %}">Faculty</a></li>
                     <li><a href="/admin/">Admin</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4>Follow Us</h4>
-                <p>Facebook | Instagram | LinkedIn</p>
+                <h4>Contact Details</h4>
+                <p>Address: Horpet, Tumkur – 572101, Karnataka, India</p>
+                <p>Phone: +91 99027 50081</p>
+                <p>Email: degreesavodaya2022@gmail.com</p>
+                <div style="margin-top: 10px;">
+                    <a href="https://www.instagram.com/sarvodayagraduates" target="_blank" style="color: white; text-decoration: underline;">Follow us on Instagram</a>
+                </div>
             </div>
         </div>
 

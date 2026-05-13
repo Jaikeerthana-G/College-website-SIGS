@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Essentials -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gallery for BCA (AI & Machine Learning) at Sarvodaya Institute of Graduate Studies (SIGS), Tumkur.">
+    <title>BCA AI & ML Gallery | SIGS</title>
+    <link rel="icon" href="{% static 'assets/images/SIGS.jpg' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <script defer src="{% static 'assets/js/script.js' %}"></script>
+</head>
+
+<body>
+    <!-- ================= LOADER ================= -->
+    <div id="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="{% url 'index' %}" class="brand">
+                <img src="{% static 'assets/images/SIGS.jpg' %}" alt="SIGS Logo">
+                <span>SIGS</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'index' %}#academics">Academics</a></li>
+                    <li><a href="{% url 'admission' %}">Admissions</a></li>
+                    <li><a href="{% url 'faculty' %}">Faculty</a></li>
+                    <li><a href="{% url 'index' %}#contact">Contact</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Open Menu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================= HERO TITLE ================= -->
+    <section class="section alt-bg" style="padding-top: 120px;">
+        <div class="container">
+            <h1 class="section-title">BCA (AI & Machine Learning) Gallery</h1>
+            <p class="section-subtitle">
+                A glimpse into our advanced AI & ML program.
+            </p>
+        </div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+    <section class="section">
+        <div class="container">
+            <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <img src="{% static 'assets/images/placeholder_ai_1.jpg' %}" alt="AI Lab Session" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onerror="this.src='https://via.placeholder.com/400x300?text=AI+Lab+Session'">
+                <img src="{% static 'assets/images/placeholder_ai_2.jpg' %}" alt="Machine Learning Workshop" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onerror="this.src='https://via.placeholder.com/400x300?text=ML+Workshop'">
+                <img src="{% static 'assets/images/placeholder_ai_3.jpg' %}" alt="Data Science Project" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onerror="this.src='https://via.placeholder.com/400x300?text=Data+Science+Project'">
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>SIGS</h3>
+                <p>Committed to Quality Education and Student Success.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'index' %}#academics">Programs</a></li>
+                    <li><a href="{% url 'admission' %}">Admissions</a></li>
+                    <li><a href="{% url 'faculty' %}">Faculty</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact Details</h4>
+                <p>Address: Horpet, Tumkur – 572101, Karnataka, India</p>
+                <p>Phone: +91 99027 50081 / +91 89718 48952</p>
+                <p>Email: degreesavodaya2022@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Sarvodaya Institute of Graduate Studies | All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

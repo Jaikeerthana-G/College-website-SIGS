@@ -39,7 +39,11 @@
 
 <section class="section">
     <div class="container">
-        <h1 class="section-title">College Admission Form 2026-27</h1>
+        <h1 class="section-title">College Admission Form (Fall 2026)</h1>
+        <p style="text-align: center; color: var(--accent-color); font-weight: 500; margin-bottom: 30px;">
+            Admissions are currently open for the Fall 2026 session. <br>
+            <strong>Application Deadline:</strong> June 30, 2026
+        </p>
 
         <form class="admission-form" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -172,6 +176,29 @@
 </section>
 
 <footer class="footer">
+    <div class="container footer-grid">
+        <div>
+            <h3>SIGS</h3>
+            <p>Committed to Quality Education and Student Success.</p>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="{% url 'index' %}#academics">Programs</a></li>
+                <li><a href="{% url 'admission' %}">Admissions</a></li>
+                <li><a href="{% url 'faculty' %}">Faculty</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Contact Details</h4>
+            <p>Address: Horpet, Tumkur – 572101, Karnataka, India</p>
+            <p>Phone: +91 99027 50081</p>
+            <p>Email: degreesavodaya2022@gmail.com</p>
+            <div style="margin-top: 10px;">
+                <a href="https://www.instagram.com/sarvodayagraduates" target="_blank" style="color: white; text-decoration: underline;">Follow us on Instagram</a>
+            </div>
+        </div>
+    </div>
     <div class="footer-bottom">
         <p>© 2026 Sarvodaya Institute of Graduate Studies | All Rights Reserved</p>
     </div>
