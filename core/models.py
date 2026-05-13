@@ -128,15 +128,22 @@ class GalleryMedia(models.Model):
         ('video', 'Video'),
         ('audio', 'Audio'),
     ]
+    CATEGORY_CHOICES = [
+        ('Campus', 'Campus General'),
+        ('BCA', 'BCA Gallery'),
+        ('BCA AI', 'BCA AI & ML Gallery'),
+        ('B.Com', 'B.Com Gallery'),
+    ]
     title = models.CharField(max_length=200)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='Campus')
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPES, default='image')
     file = models.FileField(upload_to='gallery/')
     order = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ['order']
+        ordering = ['category', 'order']
         verbose_name_plural = "Gallery Media"
 
     def __str__(self):
-        return f"{self.title} ({self.get_media_type_display()})"
+        return f"{self.title} ({self.get_category_display()} - {self.get_media_type_display()})"

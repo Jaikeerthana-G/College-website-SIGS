@@ -37,6 +37,6 @@ class HeroSectionAdmin(admin.ModelAdmin):
 
 @admin.register(GalleryMedia)
 class GalleryMediaAdmin(admin.ModelAdmin):
-    list_display = ('title', 'media_type', 'order', 'is_active')
-    list_filter = ('media_type', 'is_active')
-    list_editable = ('order', 'is_active')
+    list_display = ('title', 'category', 'media_type', 'order', 'is_active')
+    list_filter = ('category', 'media_type', 'is_active')
+    list_editable = ('category', 'order', 'is_active')

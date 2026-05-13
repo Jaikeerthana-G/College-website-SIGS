@@ -14,7 +14,7 @@ def index(request):
     courses = Course.objects.all()
     announcements = Announcement.objects.filter(is_active=True)
     hero_section = HeroSection.objects.filter(is_active=True).first()
-    gallery_media = GalleryMedia.objects.filter(is_active=True)
+    gallery_media = GalleryMedia.objects.filter(is_active=True, category='Campus')
     
     context = {
         'courses': courses,
@@ -75,10 +75,13 @@ def admission(request):
     return render(request, 'core/admission.html')
 
 def gallery_bca(request):
-    return render(request, 'core/gallery_bca.html')
+    gallery_media = GalleryMedia.objects.filter(is_active=True, category='BCA')
+    return render(request, 'core/gallery_bca.html', {'gallery_media': gallery_media})
 
 def gallery_bca_ai(request):
-    return render(request, 'core/gallery_bca_ai.html')
+    gallery_media = GalleryMedia.objects.filter(is_active=True, category='BCA AI')
+    return render(request, 'core/gallery_bca_ai.html', {'gallery_media': gallery_media})
 
 def gallery_bcom(request):
-    return render(request, 'core/gallery_bcom.html')
+    gallery_media = GalleryMedia.objects.filter(is_active=True, category='B.Com')
+    return render(request, 'core/gallery_bcom.html', {'gallery_media': gallery_media})

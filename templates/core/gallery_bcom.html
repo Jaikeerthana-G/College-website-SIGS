@@ -52,9 +52,15 @@
     <section class="section">
         <div class="container">
             <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <img src="{% static 'assets/images/placeholder_bcom_1.jpg' %}" alt="Commerce Seminar" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onerror="this.src='https://placehold.co/400x300?text=Commerce+Seminar'">
-                <img src="{% static 'assets/images/placeholder_bcom_2.jpg' %}" alt="Accounting Workshop" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onerror="this.src='https://placehold.co/400x300?text=Accounting+Workshop'">
-                <img src="{% static 'assets/images/placeholder_bcom_3.jpg' %}" alt="Finance Guest Lecture" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onerror="this.src='https://placehold.co/400x300?text=Finance+Guest+Lecture'">
+                {% for media in gallery_media %}
+                    {% if media.media_type == 'image' %}
+                        <img src="{{ media.file.url }}" alt="{{ media.title }}" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    {% elif media.media_type == 'video' %}
+                        <video controls src="{{ media.file.url }}" style="width:100%; border-radius:8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"></video>
+                    {% endif %}
+                {% empty %}
+                    <p style="grid-column: 1 / -1; text-align: center;">Gallery is currently being updated. Please check back later.</p>
+                {% endfor %}
             </div>
         </div>
     </section>
