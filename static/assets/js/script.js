@@ -30,15 +30,20 @@ window.addEventListener("scroll", () => {
 
 // ===================== PAGE LOADER =====================
 
-window.addEventListener("load", () => {
+function hideLoader() {
     const loader = document.getElementById("loader-wrapper");
-    if (loader) {
+    if (loader && loader.style.display !== "none") {
         loader.style.opacity = "0";
         setTimeout(() => {
             loader.style.display = "none";
         }, 600);
     }
-});
+}
+
+window.addEventListener("load", hideLoader);
+
+// Safety fallback: hide loader after 2.5 seconds max
+setTimeout(hideLoader, 2500);
 
 
 // ===================== SCROLL REVEAL ANIMATION =====================
